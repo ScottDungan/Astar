@@ -9,6 +9,10 @@
 #include <ctime>
 #include <string>
 #include <queue>
+#include <vector>
+#include <sstream>
+#include <fstream>
+#include <iostream>
 #include <stdlib.h>
 
 using namespace std;
@@ -25,7 +29,8 @@ const int NDIR = 8; // number of possible directions to go at any position
 const int iDir[NDIR] = {1, 1, 0, -1, -1, -1, 0, 1};
 const int jDir[NDIR] = {0, 1, 1, 1, 0, -1, -1, -1};
 
-int squares[IDIM][JDIM];
+//int squares[IDIM][JDIM];
+vector<vector<int> > squares;
 
 // list of closed (check-out) nodes
 int closedNodes[IDIM][JDIM];
@@ -252,28 +257,18 @@ string pathFind( const Location &locStart ,
 
 int main()
 {
-    // create empty squares
-    for(int j = 0; j < JDIM; j++) {
-        for(int i = 0; i < IDIM; i++) squares[i][j] = 0;
+    ifstream file("C:\\Users\\Scott\\Documents\\samples\\test.txt");// file path
+    string line;
+    while (getline(file, line))
+    {
+    	squares.push_back(vector<int>());
+        istringstream ss(line);
+        int value;
+        while (ss >> value)
+        {
+        	squares.back().push_back(value);
+        }
     }
-
-    // make wall
-    squares[4][2] = 1;
-    squares[4][3] = 1;
-    squares[4][4] = 1;
-    squares[3][4] = 1;
-    squares[8][8] = 1;
-    squares[8][9] = 1;
-    squares[8][10] = 1;
-    squares[9][10] = 1;
-    squares[9][11] = 1;
-    squares[11][11] = 1;
-    squares[11][12] = 1;
-    squares[12][11] = 1;
-    squares[15][14] = 1;
-    squares[14][15] = 1;
-    squares[2][2] = 1;
-    //squares[14][14] = 1;
 
     // starting and ending positions
     int iStart = 0,jStart = 0;
