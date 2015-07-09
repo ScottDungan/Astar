@@ -1,3 +1,7 @@
+// Initial source code from http://www.bogotobogo.com/Algorithms/path_finding_algorithm.php
+// which was based on this article: http://www.policyalmanac.org/games/aStarTutorial.htm
+//
+
 #include <iostream>
 #include <iomanip>
 #include <math.h>
